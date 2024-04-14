@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scientific Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20200530/pngtree-cute-hand-drawn-style-mathematics-education-pink-plaid-background-image_337364.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .calculator {
+      width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: rgba(255, 255, 255, 0.7);
+    }
+    .output {
+      margin-bottom: 10px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #000;
+      color: #fff;
+      text-align: right;
+      font-size: 28px;
+      height: 60px;
+      line-height: 60px;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-gap: 5px;
+    }
+    button {
+      padding: 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #ccc;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    button:hover {
+      background-color: #bbb;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="output" id="output"></div>
+    <div class="buttons">
+      <button onclick="clearOutput()">C</button>
+      <button onclick="backspace()">←</button>
+      <button onclick="appendToOutput('(')">(</button>
+      <button onclick="appendToOutput(')')">)</button>
+      <button onclick="appendToOutput('7')">7</button>
+      <button onclick="appendToOutput('8')">8</button>
+      <button onclick="appendToOutput('9')">9</button>
+      <button onclick="appendToOutput('4')">4</button>
+      <button onclick="appendToOutput('5')">5</button>
+      <button onclick="appendToOutput('6')">6</button>
+      <button onclick="appendToOutput('1')">1</button>
+      <button onclick="appendToOutput('2')">2</button>
+      <button onclick="appendToOutput('3')">3</button>
+      <button onclick="appendToOutput('0')">0</button>
+      <button onclick="appendToOutput('+')">+</button>
+      <button onclick="appendToOutput('-')">-</button>
+      <button onclick="appendToOutput('*')">*</button>
+      <button onclick="appendToOutput('/')">/</button>
+      <button onclick="calculate()">=</button>
+      <button onclick="appendToOutput('Math.sqrt(')">√</button>
+      <button onclick="appendToOutput('**')">^</button>
+      <button onclick="appendToOutput('Math.sin(')">sin</button>
+      <button onclick="appendToOutput('Math.cos(')">cos</button>
+      <button onclick="appendToOutput('Math.tan(')">tan</button>
+    </div>
+  </div>
+
+  <script>
+    function appendToOutput(value) {
+      document.getElementById('output').innerHTML += value;
+    }
+
+    function clearOutput() {
+      document.getElementById('output').innerHTML = '';
+    }
+
+    function backspace() {
+      let output = document.getElementById('output').innerHTML;
+      document.getElementById('output').innerHTML = output.slice(0, -1);
+    }
+
+    function calculate() {
+      try {
+        const result = eval(document.getElementById('output').innerHTML);
+        document.getElementById('output').innerHTML = result;
+      } catch(error) {
+        document.getElementById('output').innerHTML = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>
